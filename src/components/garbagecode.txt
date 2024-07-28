@@ -1,0 +1,47 @@
+<div className="container">
+        <nav className="relative bg-purple-700 flex justify-around items-center text-white py-5 shadow-md">
+          <NavLink to="/" style={styleBar} className="font-bold italic text-lg">
+            AkuCart
+          </NavLink>
+
+          <div className="flex gap-4 items-center">
+            <ul className="flex gap-3">
+              <li>
+                <NavLink to="/Cart" style={styleBar}>
+                  Cart
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/Login" style={styleBar}>
+                  Login
+                </NavLink>
+              </li>
+            </ul>
+            <TiThMenuOutline
+              className=" text-3xl"
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          </div>
+          <div className="fixed h-full w-screen lg:hidden bg-black/50 backdr top-0 right-0">
+            <aside
+              className={`absolute -right-1 bg-white z-20 top-20 shadow-lg transform transition-transform duration-300 w:full p-4 ${
+                isOpen ? "block" : "hidden"
+              }`}
+            >
+              <div className="flex justify-around">
+                <header className="p-4 font-bold text-lg">
+                  Filter Options
+                </header>
+              </div>
+              <div className="p-4 ">
+                Category filter dropdown
+                <div className="mb-4">
+                  <label className="block mb-2">Category</label>
+                </div>
+                Sort options dropdown
+              </div>
+            </aside>
+          </div>
+          <hr />
+        </nav>
+      </div>
