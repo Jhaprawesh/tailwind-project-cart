@@ -45,7 +45,7 @@ export default function CardDetails({ setPage }) {
 
     setIsLoading(false); // Stop loading
 
-    navigate("/new-route"); // Navigate to new page
+    navigate("/confirmation"); // Navigate to new page
   };
 
   const handleSubmit = (e) => {

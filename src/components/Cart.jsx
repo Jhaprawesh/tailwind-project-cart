@@ -43,9 +43,9 @@ export default function Cart({ cart, setCart }) {
   return (
     <>
       <div className="">
-        <div className="container mx-auto mt-10 bg-gray-200">
-          <div className="flex shadow-md my-10">
-            <div className="w-3/4 bg-white px-10 py-10">
+        <div className="container mx-auto md:mt-10 bg-gray-200">
+          <div className="md:flex shadow-md md:my-10">
+            <div className="w-full md:w-3/4 bg-white px-10 py-10">
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">{cart.length}</h2>
@@ -138,7 +138,7 @@ export default function Cart({ cart, setCart }) {
               </a>
             </div>
 
-            <div id="summary" className="w-1/4 px-8 py-10">
+            <div id="summary" className="md:w-1/4 px-8 py-10">
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
               </h1>

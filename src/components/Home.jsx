@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Card from "./Card";
 import { UserContext } from "../context/UserContext";
+import Loading from "./Loading";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -79,17 +80,17 @@ function Home() {
 
   return (
     <>
-      <div className="lg:container lg:mx-auto md:flex flex">
+      <div className="lg:container lg:mx-auto md:flex">
         {/* Sidebar Filter Section */}
         <aside
-          className={` left-0 bg-white z-20 shadow-lg transform transition-transform duration-300 w-1/3 p-4 ${
+          className={` left-0 bg-white shadow-lg transform transition-transform duration-300 w-full md:w-1/3 p-4 ${
             isOpen ? "translate-x-0" : ""
           }`}
         >
           <div className="flex justify-around">
             <header className="p-4 font-bold text-lg">Filter Options</header>
             <button
-              className="md:hidden bg-green-600 text-white rounded px-4 py-1 absolute left-72  w-16 md:w-32 lg:w-48"
+              className=" hidden md:hidden bg-green-600 text-white rounded px-4 py-1 absolute left-72  w-16 md:w-32 lg:w-48"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? "Close Filter" : "Open Filter"}
@@ -126,7 +127,7 @@ function Home() {
         {/* ${isOpen ? "w-full" : "w-3/4"} */}
         <div className="p-4 w-full">
           {loading ? (
-            <h1>Loading...</h1>
+            <Loading />
           ) : (
             <section
               // +

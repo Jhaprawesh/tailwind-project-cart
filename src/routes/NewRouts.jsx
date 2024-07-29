@@ -19,7 +19,6 @@ function NewRouts() {
         <Route path="/Cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/payment" element={<CardDetails />} />
         <Route path="/confirmation" element={<Confirmation />} />
-
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/items/:itemId" element={<ProductDetails />} />
