@@ -5,11 +5,11 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
 import { UserContext } from "../context/UserContext";
+import companylogo from "../assets/company-logo.png";
 
 export default function Navbar() {
-  const { setSearchQuery } = useContext(UserContext);
+  const { setSearchQuery, setNav } = useContext(UserContext);
   const [isSideMenuOpen, setMenu] = useState(false);
-
   const navlinks = [
     { label: "Collections", link: "#" },
     { label: "Men", link: "#" },
@@ -26,6 +26,11 @@ export default function Navbar() {
     setSearchQuery(e.target.value);
   };
 
+  const toggleMenu = () => {
+    setMenu((prevMenu) => !prevMenu);
+    setNav((prevNav) => !prevNav);
+  };
+
   return (
     <>
       <main>
@@ -34,12 +39,16 @@ export default function Navbar() {
             <section className="flex items-center gap-4">
               {/* menu */}
               <FiMenu
-                onClick={() => setMenu(true)}
+                onClick={toggleMenu}
                 className="text-3xl cursor-pointer lg:hidden"
               />
               {/* logo */}
               <Link to="/" className="text-4xl font-mono">
-                logo
+                <img
+                  src={companylogo}
+                  alt="companylogo"
+                  className="object-cover h-10 md:h-20"
+                />
               </Link>
             </section>
             {navlinks.map((d, i) => (
@@ -52,14 +61,9 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <input
-            type="text"
-            className="text-black rounded-md p-1"
-            placeholder="Search..."
-            onChange={handleSearchChange}
-          />
+
           {/* sidebar mobile menu */}
-          <div
+          {/* <div
             className={`fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 right-0 transition-transform z-20 ${
               isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
             }`}
@@ -76,7 +80,7 @@ export default function Navbar() {
                 </Link>
               ))}
             </section>
-          </div>
+          </div> */}
 
           {/* last section */}
           <section className="flex items-center gap-4">
@@ -90,6 +94,17 @@ export default function Navbar() {
             {/* avatar img */}
           </section>
         </nav>
+        <div className="pt-2  text-gray-600 text-center mb-3">
+          <div className="relative">
+            <input
+              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none  "
+              placeholder="Search..."
+              onChange={handleSearchChange}
+              name="search"
+              type="text"
+            />
+          </div>
+        </div>
         <hr />
       </main>
     </>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-
-export default function Cart({ cart, setCart }) {
+// { cart, setCart }
+export default function Cart() {
+  const { cart, setCart } = useContext(UserContext);
   const [cost, setCost] = useState(0);
   const { price } = useContext(UserContext);
 

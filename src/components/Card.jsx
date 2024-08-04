@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { convertToRupees } from "../utils/utils";
+import StarRating from "./StarRating";
 
 function Card({ item, onAddToCart }) {
   const { setSelectedProduct } = useContext(UserContext);
@@ -30,7 +31,20 @@ function Card({ item, onAddToCart }) {
       <h2 className="font-semibold mb-4 line-through">
         Discount: ₹{discountPrice.toFixed(0)}
       </h2>
-      <p className="mb-4">Rating: {item.rating}</p>
+      <div>
+        <StarRating rating={item.rating} />
+        <div className="flex justify-center mb-3">
+          <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+            4.95
+          </p>
+          <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+            out of
+          </p>
+          <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+            5
+          </p>
+        </div>
+      </div>
       <button
         className="p-2 px-6 bg-purple-500 text-white rounded-md hover:bg-purple-600"
         onClick={() => onAddToCart(item)}
