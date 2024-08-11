@@ -8,7 +8,7 @@ import { UserContext } from "../context/UserContext";
 import companylogo from "../assets/company-logo.png";
 
 export default function Navbar() {
-  const { setSearchQuery, setNav } = useContext(UserContext);
+  const { setSearchQuery, setNav, cart } = useContext(UserContext);
   const [isSideMenuOpen, setMenu] = useState(false);
   const navlinks = [
     { label: "Collections", link: "#" },
@@ -86,7 +86,14 @@ export default function Navbar() {
           <section className="flex items-center gap-4">
             {/* cart icon */}
             <NavLink to="/Cart" style={styleBar}>
-              <AiOutlineShoppingCart className="text-3xl" />
+              <div className="relative py-2">
+                <div className="t-0 absolute left-3 top-0">
+                  <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                    {cart.length}
+                  </p>
+                </div>
+                <AiOutlineShoppingCart className="text-3xl" />
+              </div>
             </NavLink>
             <NavLink to="/SignUp" style={styleBar}>
               <IoPerson className="text-3xl" />
