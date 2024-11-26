@@ -1,21 +1,15 @@
-import React, { useState, useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { FiMenu } from "react-icons/fi";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { IconButton } from "@material-tailwind/react";
+import React, { useContext, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { IoCloseOutline } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
-import { UserContext } from "../context/UserContext";
+import { Link, NavLink } from "react-router-dom";
 import companylogo from "../assets/company-logo.png";
+import { UserContext } from "../context/UserContext";
 
 export default function Navbar() {
-  const { setSearchQuery, setNav, cart } = useContext(UserContext);
-  const [isSideMenuOpen, setMenu] = useState(false);
-  const navlinks = [
-    { label: "Collections", link: "#" },
-    { label: "Men", link: "#" },
-    { label: "About", link: "#" },
-    { label: "Contact", link: "#" },
-  ];
+  const { setSearchQuery, cart, isDrawerOpen, setIsDrawerOpen } =
+    useContext(UserContext);
 
   const styleBar = ({ isActive }) => ({
     color: isActive ? "red" : "",
@@ -26,23 +20,27 @@ export default function Navbar() {
     setSearchQuery(e.target.value);
   };
 
-  const toggleMenu = () => {
-    setMenu((prevMenu) => !prevMenu);
-    setNav((prevNav) => !prevNav);
-  };
+  const openDrawer = () => setIsDrawerOpen(true);
 
   return (
     <>
-      <main>
+      <main className="sticky top-0 z-10 bg-white outline-4 outline-green-500 w-full">
         <nav className="flex justify-between px-4 md:px-8 items-center py-6">
           <div className="flex items-center gap-8">
             <section className="flex items-center gap-4">
-              {/* menu */}
-              <FiMenu
-                onClick={toggleMenu}
-                className="text-3xl cursor-pointer lg:hidden"
-              />
-              {/* logo */}
+              <IconButton
+                variant="text"
+                size="lg"
+                onClick={openDrawer}
+                className="md:hidden"
+              >
+                {isDrawerOpen ? (
+                  <XMarkIcon className="h-8 w-8 stroke-2" />
+                ) : (
+                  <Bars3Icon className="h-8 w-8 stroke-2" />
+                )}
+              </IconButton>
+
               <Link to="/" className="text-4xl font-mono">
                 <img
                   src={companylogo}
@@ -51,40 +49,9 @@ export default function Navbar() {
                 />
               </Link>
             </section>
-            {navlinks.map((d, i) => (
-              <Link
-                key={i}
-                className="hidden lg:block text-gray-400 hover:text-black"
-                to={d.link}
-              >
-                {d.label}
-              </Link>
-            ))}
           </div>
 
-          {/* sidebar mobile menu */}
-          {/* <div
-            className={`fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 right-0 transition-transform z-20 ${
-              isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
-          >
-            <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex">
-              <IoCloseOutline
-                onClick={() => setMenu(false)}
-                className="mt-0 mb-8 text-3xl cursor-pointer"
-              />
-
-              {navlinks.map((d, i) => (
-                <Link key={i} className="font-bold" to={d.link}>
-                  {d.label}
-                </Link>
-              ))}
-            </section>
-          </div> */}
-
-          {/* last section */}
           <section className="flex items-center gap-4">
-            {/* cart icon */}
             <NavLink to="/Cart" style={styleBar}>
               <div className="relative py-2">
                 <div className="t-0 absolute left-3 top-0">

@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { convertToRupees } from "../utils/utils";
 import StarRating from "./StarRating";
+import { Button } from "@material-tailwind/react";
 
 function Card({ item, onAddToCart }) {
   const { setSelectedProduct } = useContext(UserContext);
@@ -45,18 +46,18 @@ function Card({ item, onAddToCart }) {
           </p>
         </div>
       </div>
-      <button
+      <Button
         className="p-2 px-6 bg-purple-500 text-white rounded-md hover:bg-purple-600"
         onClick={() => onAddToCart(item)}
       >
         Add To Cart
-      </button>
-      <button
+      </Button>
+      <Button
         className="bg-green-500 text-white rounded px-2 p-2 ml-3"
         onClick={handleShowDetails}
       >
         Show Details
-      </button>
+      </Button>
     </section>
   );
 }

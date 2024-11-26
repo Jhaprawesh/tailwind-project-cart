@@ -9,10 +9,13 @@ export const UserProvider = ({ children }) => {
   const [price, setPrice] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [nav, setNav] = useState();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <UserContext.Provider
       value={{
+        isDrawerOpen,
+        setIsDrawerOpen,
         nav,
         setNav,
         cart,
